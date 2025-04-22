@@ -86,30 +86,31 @@ const Features = () => {
   ];
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="container mx-auto px-4">
+    <section className="py-16 bg-gradient-to-b from-gray-900 to-black relative">
+      {/* Background accent shapes */}
+      <div className="absolute top-0 right-0 w-32 h-32 bg-brand-orange opacity-20 rounded-full blur-2xl"></div>
+      <div className="absolute bottom-0 left-0 w-40 h-40 bg-brand-orange opacity-10 rounded-full blur-2xl"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Key Features</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">Advanced technology designed for professionals and enthusiasts who demand the best in portable recording</p>
+          <span className="inline-block text-brand-orange font-medium text-sm mb-2 bg-brand-orange bg-opacity-10 px-4 py-1 rounded-full">Advanced Features</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Key Features</h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">Advanced technology designed for professionals and enthusiasts who demand the best in portable recording</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8">
           {featuresList.map((feature) => (
-            <div key={feature.id} className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-t-4 border-blue-500 h-full flex flex-col">
+            <div key={feature.id} className="group relative bg-gray-800 bg-opacity-50 backdrop-blur-sm p-6 rounded-2xl border border-gray-700 hover:border-brand-orange transition-all duration-300 h-full flex flex-col overflow-hidden">
+              {/* Hover effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-brand-orange to-brand-orange-light opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
+              
               <div className="flex items-center mb-4">
-                <div className="text-blue-500 mr-3 bg-blue-50 p-3 rounded-full">
+                <div className="text-brand-orange mr-3 bg-brand-orange bg-opacity-10 p-3 rounded-full">
                   {feature.icon}
                 </div>
               </div>
-              <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-              <p className="text-gray-600 flex-grow">{feature.description}</p>
-              {/* <div className="mt-4 pt-2 border-t border-gray-100">
-                <a href="#" className="text-blue-500 hover:text-blue-700 text-sm font-medium flex items-center">
-                  Learn more
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-                </a>
-              </div> */}
+              <h3 className="text-xl font-semibold mb-3 text-white">{feature.title}</h3>
+              <p className="text-gray-300 flex-grow text-sm">{feature.description}</p>
             </div>
           ))}
         </div>
