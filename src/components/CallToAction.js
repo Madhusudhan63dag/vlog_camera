@@ -216,8 +216,8 @@ const CallToAction = () => {
             </form>
           )}
           
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-            <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 border border-gray-700 hover:border-brand-orange transition-all duration-300">
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
+            {/* <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 border border-gray-700 hover:border-brand-orange transition-all duration-300">
               <div className="text-brand-orange bg-brand-orange bg-opacity-10 p-3 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -226,7 +226,7 @@ const CallToAction = () => {
               <h3 className="text-xl font-bold mb-2">Phone Support</h3>
               <p className="text-gray-400">Mon-Fri: 9AM - 6PM</p>
               <p className="font-medium mt-2 text-brand-orange">+1 (888) 123-4567</p>
-            </div>
+            </div> */}
             
             <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 border border-gray-700 hover:border-brand-orange transition-all duration-300">
               <div className="text-brand-orange bg-brand-orange bg-opacity-10 p-3 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
@@ -236,7 +236,7 @@ const CallToAction = () => {
               </div>
               <h3 className="text-xl font-bold mb-2">Email Us</h3>
               <p className="text-gray-400">We'll respond within 24 hours</p>
-              <p className="font-medium mt-2 text-brand-orange">support@iandivlog.com</p>
+              <p className="font-medium mt-2 text-brand-orange">israelitesshopping171@gmail.com</p>
             </div>
             
             <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 border border-gray-700 hover:border-brand-orange transition-all duration-300">
@@ -247,8 +247,8 @@ const CallToAction = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-bold mb-2">Main Office</h3>
-              <p className="text-gray-400">123 Tech Boulevard</p>
-              <p className="font-medium mt-2 text-brand-orange">San Francisco, CA 94105</p>
+              <p className="text-gray-400">Begumpet, Hyderabad</p>
+              <p className="font-medium mt-2 text-brand-orange">Telangana 500016</p>
             </div>
           </div>
         </div>

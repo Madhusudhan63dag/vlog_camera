@@ -38,11 +38,16 @@ const FAQ = () => {
   };
   
   return (
-    <section id="faq" className="py-12 sm:py-16 bg-white">
-      <div className="container mx-auto px-4">
+    <section id="faq" className="py-12 sm:py-16 bg-gradient-to-b from-black to-gray-900 relative">
+      {/* Background accent shapes */}
+      <div className="absolute top-0 left-0 w-32 h-32 bg-brand-orange opacity-10 rounded-full blur-2xl"></div>
+      <div className="absolute bottom-0 right-0 w-40 h-40 bg-brand-orange opacity-10 rounded-full blur-2xl"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-10 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4">Frequently Asked Questions</h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+          <span className="inline-block text-brand-orange font-medium text-sm mb-2 bg-brand-orange bg-opacity-10 px-4 py-1 rounded-full">Need Help?</span>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4 text-white">Frequently Asked Questions</h2>
+          <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto">
             Everything you need to know about our 4G portable recorder
           </p>
         </div>
@@ -51,10 +56,10 @@ const FAQ = () => {
           {faqItems.map((item, index) => (
             <div key={index} className="mb-4 sm:mb-6">
               <button
-                className={`w-full text-left p-4 sm:p-5 rounded-lg flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+                className={`w-full text-left p-4 sm:p-5 rounded-lg flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-brand-orange transition-colors ${
                   activeIndex === index 
-                    ? 'bg-blue-50 text-blue-900' 
-                    : 'bg-gray-50 text-gray-800 hover:bg-gray-100'
+                    ? 'bg-gray-800 text-white border border-gray-700' 
+                    : 'bg-gray-800 bg-opacity-50 text-gray-300 border border-gray-700 hover:border-gray-600'
                 }`}
                 onClick={() => toggleFAQ(index)}
                 aria-expanded={activeIndex === index}
@@ -62,7 +67,7 @@ const FAQ = () => {
                 <span className="font-medium text-sm sm:text-base pr-8">{item.question}</span>
                 <svg 
                   className={`h-5 w-5 transform transition-transform ${
-                    activeIndex === index ? 'rotate-180' : 'rotate-0'
+                    activeIndex === index ? 'rotate-180 text-brand-orange' : 'rotate-0 text-gray-400'
                   }`} 
                   xmlns="http://www.w3.org/2000/svg" 
                   viewBox="0 0 20 20" 
@@ -79,17 +84,17 @@ const FAQ = () => {
                     : 'max-h-0 opacity-0'
                 }`}
               >
-                <p className="text-gray-600 text-sm sm:text-base">{item.answer}</p>
+                <p className="text-gray-300 text-sm sm:text-base">{item.answer}</p>
               </div>
             </div>
           ))}
         </div>
         
         <div className="text-center mt-8 sm:mt-12">
-          <p className="text-gray-600 mb-4">Still have questions?</p>
+          <p className="text-gray-300 mb-4">Still have questions?</p>
           <a 
             href="#contact" 
-            className="inline-block bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-6 rounded-lg transition-colors"
+            className="inline-block bg-brand-orange hover:bg-brand-orange-light text-white font-medium py-2 px-6 rounded-lg transition-colors"
           >
             Contact Support
           </a>

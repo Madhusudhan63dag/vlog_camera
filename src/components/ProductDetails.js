@@ -2,83 +2,60 @@ import React, { useState, useRef } from 'react';
 
 const ProductDetails = ({ onBuyNow }) => {
   const [quantity, setQuantity] = useState(1);
-  // Product variants state
   const [selectedVariant, setSelectedVariant] = useState('standard');
-  // Reference to checkout section for smooth scrolling
   const checkoutRef = useRef(null);
-  
-  // Product variants with pricing
+
   const variants = {
     standard: {
       name: "Standard Edition",
       basePrice: 5490,
       features: ["4G LTE Connectivity", "4K UHD Video", "8-hour Battery Life"]
-    },
-    // pro: {
-    //   name: "Professional Edition",
-    //   basePrice: 5990,
-    //   features: ["4G LTE Connectivity", "4K UHD Video", "12-hour Extended Battery", "Waterproof Case", "64GB MicroSD Card"]
-    // },
-    // ultimate: {
-    //   name: "Ultimate Bundle",
-    //   basePrice: 7990,
-    //   features: ["4G LTE Connectivity", "4K UHD Video", "16-hour Ultra Battery", "Waterproof Case", "128GB MicroSD Card", "Extra Mounting Accessories", "2-Year Extended Warranty"]
-    // }
+    }
   };
-  
-  // Product images for each variant
+
   const productImages = {
     standard: "/images/recorder-standard.jpg",
     pro: "/images/recorder-pro.jpg",
     ultimate: "/images/recorder-ultimate.jpg"
   };
-  
-  // Handle quantity change
+
   const handleQuantityChange = (e) => {
     const value = parseInt(e.target.value);
     if (value > 0 && value <= 10) {
       setQuantity(value);
     }
   };
-  
-  // Increase quantity
+
   const increaseQuantity = () => {
     if (quantity < 10) {
       setQuantity(quantity + 1);
     }
   };
-  
-  // Decrease quantity
+
   const decreaseQuantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
     }
   };
-  
-  // Handle variant change
+
   const handleVariantChange = (variant) => {
     setSelectedVariant(variant);
   };
-  
-  // Calculate total price
+
   const totalPrice = variants[selectedVariant].basePrice * quantity;
-  
-  // Format price with commas and rupee symbol
+
   const formatPrice = (price) => {
     return "₹" + price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
-  // Navigate to checkout using the onBuyNow prop
   const handleBuyNowClick = () => {
     if (onBuyNow) {
       onBuyNow(variants[selectedVariant], quantity, totalPrice);
     } else {
-      // Fallback to scroll behavior if onBuyNow is not provided
       checkoutRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
   };
-  
-  // Organize specs into categories with icons
+
   const specCategories = [
     {
       category: "Video & Display",
@@ -215,24 +192,20 @@ const ProductDetails = ({ onBuyNow }) => {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Hero product section with side-by-side layout */}
+    <div className="container mx-auto px-4 py-8 bg-gradient-to-b from-black to-gray-900 text-white">
       <div className="flex flex-col lg:flex-row gap-8 mb-16">
-        {/* Product Image - Left Side */}
         <div className="lg:w-1/2">
-          <div className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100">
+          <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-700">
             <img 
               src={productImages[selectedVariant]} 
               alt={`I & I vlog camera ${variants[selectedVariant].name}`} 
               className="w-full h-auto object-cover"
             />
-            
-            {/* Image thumbnails for different angles */}
-            <div className="flex justify-center gap-2 p-4 border-t border-gray-100">
+            <div className="flex justify-center gap-2 p-4 border-t border-gray-700">
               {[1, 2, 3, 4].map((imgNum) => (
                 <div 
                   key={imgNum} 
-                  className="w-16 h-16 border rounded-md overflow-hidden cursor-pointer hover:border-blue-500"
+                  className="w-16 h-16 border border-gray-700 rounded-md overflow-hidden cursor-pointer hover:border-brand-orange"
                 >
                   <img 
                     src={`/images/recorder-${selectedVariant}-angle${imgNum}.jpg`} 
@@ -244,26 +217,22 @@ const ProductDetails = ({ onBuyNow }) => {
             </div>
           </div>
         </div>
-        
-        {/* Product Details - Right Side */}
         <div id='product' className="lg:w-1/2">
-          <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6 h-full">
+          <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-lg border border-gray-700 p-6 h-full">
             <div className="flex flex-col justify-between h-full">
               <div>
-                <h1 className="text-4xl font-bold text-gray-800 mb-2">I & I vlog camera</h1>
-                <h2 className="text-xl text-blue-600 font-medium mb-4">{variants[selectedVariant].name}</h2>
-                
+                <h1 className="text-4xl font-bold text-white mb-2">I & I vlog camera</h1>
+                <h2 className="text-xl text-brand-orange font-medium mb-4">{variants[selectedVariant].name}</h2>
                 <div className="mb-6">
-                  <p className="text-3xl font-bold text-gray-900 mb-1">{formatPrice(variants[selectedVariant].basePrice)}</p>
-                  <p className="text-green-600">Free shipping & 30-day returns</p>
+                  <p className="text-3xl font-bold text-white mb-1">{formatPrice(variants[selectedVariant].basePrice)}</p>
+                  <p className="text-green-400">Free shipping & 30-day returns</p>
                 </div>
-                
                 <div className="mb-6">
                   <h3 className="text-lg font-medium mb-2">Key Features:</h3>
                   <ul className="space-y-2">
                     {variants[selectedVariant].features.map((feature, idx) => (
                       <li key={idx} className="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-brand-orange mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
                         {feature}
@@ -271,8 +240,6 @@ const ProductDetails = ({ onBuyNow }) => {
                     ))}
                   </ul>
                 </div>
-                
-                {/* Variant Selection */}
                 <div className="mb-6">
                   <h3 className="text-lg font-medium mb-2">Select Edition:</h3>
                   <div className="flex space-x-2">
@@ -280,8 +247,8 @@ const ProductDetails = ({ onBuyNow }) => {
                       <button
                         key={key}
                         className={`px-4 py-2 border rounded-md ${selectedVariant === key 
-                          ? 'border-blue-500 bg-blue-50 text-blue-700' 
-                          : 'border-gray-300 hover:border-gray-400'}`}
+                          ? 'border-brand-orange bg-brand-orange bg-opacity-20 text-brand-orange' 
+                          : 'border-gray-600 hover:border-gray-400'}`}
                         onClick={() => handleVariantChange(key)}
                       >
                         {variants[key].name.split(' ')[0]}
@@ -290,17 +257,15 @@ const ProductDetails = ({ onBuyNow }) => {
                   </div>
                 </div>
               </div>
-              
-              <div className="border-t border-gray-200 pt-6">
-                {/* Quantity Selector */}
+              <div className="border-t border-gray-700 pt-6">
                 <div className="flex items-center justify-between mb-6">
                   <div>
-                    <label htmlFor="quantity" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="quantity" className="block text-sm font-medium text-gray-300 mb-1">
                       Quantity:
                     </label>
                     <div className="flex items-center">
                       <button
-                        className="px-3 py-1 bg-gray-200 rounded-l-md hover:bg-gray-300"
+                        className="px-3 py-1 bg-gray-700 rounded-l-md hover:bg-gray-600"
                         onClick={decreaseQuantity}
                       >
                         -
@@ -310,25 +275,22 @@ const ProductDetails = ({ onBuyNow }) => {
                         type="number"
                         value={quantity}
                         onChange={handleQuantityChange}
-                        className="mx-0 w-12 text-center border-t border-b"
+                        className="mx-0 w-12 text-center border-t border-b border-gray-600 bg-gray-800 text-white"
                       />
                       <button
-                        className="px-3 py-1 bg-gray-200 rounded-r-md hover:bg-gray-300"
+                        className="px-3 py-1 bg-gray-700 rounded-r-md hover:bg-gray-600"
                         onClick={increaseQuantity}
                       >
                         +
                       </button>
                     </div>
                   </div>
-                  
                   <div className="text-xl font-bold">
                     Total: {formatPrice(totalPrice)}
                   </div>
                 </div>
-                
-                {/* Buy Now Button */}
                 <button
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-md font-bold text-lg transition-colors"
+                  className="w-full bg-brand-orange hover:bg-brand-orange-light text-white py-3 px-6 rounded-md font-bold text-lg transition-colors"
                   onClick={handleBuyNowClick}
                 >
                   Buy Now
@@ -338,36 +300,32 @@ const ProductDetails = ({ onBuyNow }) => {
           </div>
         </div>
       </div>
-
-      {/* Rest of the component remains the same */}
-      <div  className="text-center mb-16">
-        <h2  className="text-3xl md:text-4xl font-bold mb-4">Technical Specifications</h2>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+      <div className="text-center mb-16">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Technical Specifications</h2>
+        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
           Professional-grade hardware engineered for reliability in any environment
         </p>
       </div>
-
       <div id="specs" className="mb-20">
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
-          {/* Specifications grid with categories */}
-          <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+        <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-lg overflow-hidden border border-gray-700">
+          <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-700">
             {specCategories.map((category, catIndex) => (
-              <div key={catIndex} className={`p-6 ${catIndex >= 2 ? 'border-t border-gray-200' : ''}`}>
-                <h3 className="text-xl font-bold mb-4 flex items-center text-gray-800">
+              <div key={catIndex} className={`p-6 ${catIndex >= 2 ? 'border-t border-gray-700' : ''}`}>
+                <h3 className="text-xl font-bold mb-4 flex items-center text-white">
                   <span className="mr-2 text-2xl">{category.icon}</span>
                   {category.category}
                 </h3>
                 <ul className="space-y-4">
                   {category.specs.map((spec, index) => (
                     <li key={index} className="flex items-start">
-                      <div className="flex-shrink-0 h-5 w-5 text-blue-500 mt-1">
+                      <div className="flex-shrink-0 h-5 w-5 text-brand-orange mt-1">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
                       </div>
                       <div className="ml-3">
-                        <p className="font-medium text-gray-800">{spec.label}</p>
-                        <p className="text-gray-600">{spec.value}</p>
+                        <p className="font-medium text-white">{spec.label}</p>
+                        <p className="text-gray-300">{spec.value}</p>
                       </div>
                     </li>
                   ))}
@@ -375,129 +333,100 @@ const ProductDetails = ({ onBuyNow }) => {
               </div>
             ))}
           </div>
-          
-          {/* Download specs button */}
-          {/* <div className="bg-gray-50 px-6 py-4 flex justify-center border-t border-gray-100">
-            <a href="#" className="flex items-center text-blue-600 hover:text-blue-800 font-medium">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              Download full specifications (PDF)
-            </a>
-          </div> */}
         </div>
       </div>
-
       <div id="how-it-works" className="mb-16 pt-16 -mt-16">
-        <h2 className="text-3xl font-bold mb-4 sm:mb-6 text-center">How It Works</h2>
-        <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mb-8 sm:mb-12 text-center">
+        <h2 className="text-3xl font-bold mb-4 sm:mb-6 text-center text-white">How It Works</h2>
+        <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-8 sm:mb-12 text-center">
           Simple operation in just five easy steps
         </p>
-
-        {/* Desktop version with horizontal timeline */}
         <div className="hidden lg:block mb-16">
           <div className="relative max-w-5xl mx-auto">
-            {/* Horizontal line connecting steps */}
-            <div className="absolute top-24 left-0 w-full h-1 bg-blue-200 z-0"></div>
-            
-            {/* Steps */}
+            <div className="absolute top-24 left-0 w-full h-1 bg-gray-700 z-0"></div>
             <div className="flex justify-between relative z-10">
               {howItWorksSteps.map((step) => (
                 <div key={step.id} className="flex flex-col items-center w-40">
-                  <div className="bg-white border-4 border-blue-500 rounded-full h-16 w-16 flex items-center justify-center mb-4">
-                    <div className="text-blue-500">
+                  <div className="bg-gray-800 border-4 border-brand-orange rounded-full h-16 w-16 flex items-center justify-center mb-4">
+                    <div className="text-brand-orange">
                       {step.icon}
                     </div>
                   </div>
-                  <h3 className="text-lg font-semibold mb-2 text-center">{step.title}</h3>
-                  <p className="text-center text-gray-600 text-sm">{step.description}</p>
+                  <h3 className="text-lg font-semibold mb-2 text-center text-white">{step.title}</h3>
+                  <p className="text-center text-gray-300 text-sm">{step.description}</p>
                 </div>
               ))}
             </div>
-            
-            {/* Arrows between steps */}
             {[1, 2, 3, 4].map((num) => (
               <div key={num} className="absolute top-24 transform translate-y-[-50%] z-5" style={{ left: `${num * 20}%` }}>
-                <svg className="h-6 w-6 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="h-6 w-6 text-brand-orange" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
               </div>
             ))}
           </div>
         </div>
-
-        {/* Mobile version with vertical timeline */}
         <div className="lg:hidden">
           <div className="relative w-full md:w-10/12 lg:w-8/12 mx-auto">
             {howItWorksSteps.map((step, index) => (
               <div key={step.id} className="flex items-start mb-8 w-full pl-12 relative">
-                {/* Step number circle */}
                 <div className="absolute left-0 mt-1">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-500 text-white font-bold">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-brand-orange text-white font-bold">
                     {step.id}
                   </div>
                 </div>
-                
-                {/* Vertical connector line */}
                 {index < howItWorksSteps.length - 1 && (
-                  <div className="absolute left-5 top-10 h-full w-0.5 bg-blue-200"></div>
+                  <div className="absolute left-5 top-10 h-full w-0.5 bg-gray-700"></div>
                 )}
-                
-                {/* Content */}
                 <div className="flex-1">
                   <div className="flex items-center mb-1">
-                    <div className="text-blue-500 mr-2">
+                    <div className="text-brand-orange mr-2">
                       {step.icon}
                     </div>
-                    <h3 className="font-medium text-lg">{step.title}</h3>
+                    <h3 className="font-medium text-lg text-white">{step.title}</h3>
                   </div>
-                  <p className="text-gray-600">{step.description}</p>
+                  <p className="text-gray-300">{step.description}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
-
-        {/* Video Demo Section */}
-        <div className="mt-12 max-w-2xl mx-auto bg-white p-4 rounded-lg shadow-md">
+        <div className="mt-12 max-w-2xl mx-auto bg-gradient-to-br from-gray-800 to-gray-900 p-4 rounded-lg shadow-md border border-gray-700">
           <div className="relative pb-[56.25%] h-0 rounded overflow-hidden">
-            <div className="absolute inset-0 bg-gray-100 flex items-center justify-center border rounded-md">
+            <div className="absolute inset-0 bg-gray-700 flex items-center justify-center border border-gray-700 rounded-md">
               <div className="text-center p-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 sm:h-16 sm:w-16 text-blue-300 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 sm:h-16 sm:w-16 text-brand-orange mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <p className="text-gray-600 mb-2">Watch how easy it is to use the I & I vlog camera</p>
-                <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition-colors">
+                <p className="text-gray-300 mb-2">Watch how easy it is to use the I & I vlog camera</p>
+                <button className="bg-brand-orange hover:bg-brand-orange-light text-white px-4 py-2 rounded-md transition-colors">
                   Play Demo
                 </button>
               </div>
             </div>
           </div>
         </div>
-
       </div>
-
-      <div className="bg-blue-50 p-6 md:p-10 rounded-lg">
-        <h3 className="text-2xl font-bold mb-4">Why Choose Our 4G Portable Recorder?</h3>
+      <div className="bg-brand-orange bg-opacity-10 p-6 md:p-10 rounded-lg border border-brand-orange border-opacity-30">
+        <h3 className="text-2xl font-bold mb-4 text-white">Why Choose Our 4G Portable Recorder?</h3>
         <ul className="space-y-4">
           <li className="flex items-start">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-brand-orange mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
-            <span><strong>Total Mobility:</strong> No Wi‑Fi required—stay connected wherever 4G coverage exists.</span>
+            <span><strong className="text-white">Total Mobility:</strong> <span className="text-gray-300">No Wi‑Fi required—stay connected wherever 4G coverage exists.</span></span>
           </li>
           <li className="flex items-start">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-brand-orange mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
-            <span><strong>Versatile Use:</strong> From extreme sports and vlogging to field inspections and personal safety.</span>
+            <span><strong className="text-white">Versatile Use:</strong> <span className="text-gray-300">From extreme sports and vlogging to field inspections and personal safety.</span></span>
           </li>
           <li className="flex items-start">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-brand-orange mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
-            <span><strong>Reliable Performance:</strong> Auto‑save on power loss, low‑power consumption, and robust build quality.</span>
+            <span><strong className="text-white">Reliable Performance:</strong> <span className="text-gray-300">Auto‑save on power loss, low‑power consumption, and robust build quality.</span></span>
           </li>
         </ul>
       </div>

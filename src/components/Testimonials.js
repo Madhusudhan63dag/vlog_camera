@@ -7,7 +7,7 @@ const Testimonials = () => {
       <svg 
         key={i}
         xmlns="http://www.w3.org/2000/svg" 
-        className={`h-5 w-5 ${i < rating ? 'text-yellow-400' : 'text-gray-300'}`}
+        className={`h-5 w-5 ${i < rating ? 'text-brand-orange' : 'text-gray-600'}`}
         viewBox="0 0 20 20"
         fill="currentColor"
       >
@@ -45,20 +45,25 @@ const Testimonials = () => {
   ];
 
   return (
-    <section id="testimonials" className="py-12 sm:py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
+    <section id="testimonials" className="py-12 sm:py-16 bg-gradient-to-b from-gray-900 to-black relative">
+      {/* Background accent shapes */}
+      <div className="absolute top-0 right-0 w-32 h-32 bg-brand-orange opacity-10 rounded-full blur-2xl"></div>
+      <div className="absolute bottom-0 left-0 w-40 h-40 bg-brand-orange opacity-10 rounded-full blur-2xl"></div>
+      
       <div className="container mx-auto px-4">
         <div className="text-center mb-10 sm:mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-3 sm:mb-4">What Our Users Say</h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-2">
+          <span className="inline-block text-brand-orange font-medium text-sm mb-2 bg-brand-orange bg-opacity-10 px-4 py-1 rounded-full">Customer Experiences</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-white">What Our Users Say</h2>
+          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-2">
             Our 4G portable recorder is trusted by professionals across various industries
           </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-8 max-w-6xl mx-auto">
           {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="bg-white p-5 sm:p-6 rounded-lg shadow-lg relative">
+            <div key={testimonial.id} className="bg-gradient-to-br from-gray-800 to-gray-900 p-5 sm:p-6 rounded-lg shadow-lg relative border border-gray-700 hover:border-brand-orange transition-all duration-300">
               {/* Quotation mark decoration */}
-              <div className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 bg-blue-500 rounded-full w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-white">
+              <div className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 bg-brand-orange rounded-full w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 sm:h-4 sm:w-4" viewBox="0 0 24 24" fill="currentColor">
                   <path fillRule="evenodd" d="M18.97 8.793a1 1 0 0 0-1.415-1.414l-6.364 6.364a1 1 0 0 0 0 1.414l6.364 6.364a1 1 0 0 1-1.414 1.414l-6.364-6.364a3 3 0 0 1 0-4.242l6.364-6.364a3 3 0 0 1 4.242 0l1.414 1.414a3 3 0 0 1 0 4.242l-2.828 2.828 4.242 4.243a1 1 0 1 0 1.414-1.414L18.97 8.793zm-13.435 0a1 1 0 1 0-1.414-1.414L.757 10.743a3 3 0 0 0 0 4.242l4.243 4.243a1 1 0 0 0 1.414-1.414L2.171 13.57l3.364-3.364a1 1 0 0 0 0-1.414z" />
                 </svg>
@@ -70,15 +75,15 @@ const Testimonials = () => {
                 </div>
               </div>
               
-              <p className="text-gray-700 italic mb-5 sm:mb-6">"{testimonial.quote}"</p>
+              <p className="text-gray-300 italic mb-5 sm:mb-6">"{testimonial.quote}"</p>
               
               <div className="flex items-center mt-4">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold mr-3">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-brand-orange bg-opacity-80 text-white flex items-center justify-center font-bold mr-3">
                   {testimonial.avatar}
                 </div>
                 <div>
-                  <h3 className="font-semibold text-base sm:text-lg">{testimonial.name}</h3>
-                  <p className="text-gray-600 text-xs sm:text-sm">{testimonial.role}</p>
+                  <h3 className="font-semibold text-base sm:text-lg text-white">{testimonial.name}</h3>
+                  <p className="text-gray-400 text-xs sm:text-sm">{testimonial.role}</p>
                 </div>
               </div>
             </div>
