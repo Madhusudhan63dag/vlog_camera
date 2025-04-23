@@ -1,4 +1,5 @@
 import React from 'react';
+import hero from '../assets/hero.jpg'; // Assuming you have a hero image in your assets folder
 
 const Hero = () => {
   return (
@@ -34,11 +35,11 @@ const Hero = () => {
           <div className="md:w-1/2 px-4 sm:px-8 md:px-0">
             <div className="relative">
               {/* Product image with trendy styling */}
-              <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl h-64 sm:h-80 md:h-96 w-full flex items-center justify-center shadow-2xl overflow-hidden border border-gray-700 p-4">
-                <p className="text-gray-400">Product Image</p>
+              <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl h-64 sm:h-80 md:h-[26rem] w-full flex items-center justify-center shadow-2xl overflow-hidden border border-gray-700 p-4">
+                <img src={hero} alt="Hero" className="w-full h-full" />
                 
                 {/* Glass-like highlight effect */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-transparent to-brand-orange opacity-10 rounded-2xl"></div>
+                {/* <div className="absolute inset-0 bg-gradient-to-tr from-transparent to-brand-orange opacity-10 rounded-2xl"></div> */}
                 
                 {/* Geometric accent elements */}
                 <div className="absolute -top-5 -right-5 w-20 h-20 sm:w-24 sm:h-24 bg-brand-orange rounded-full opacity-20"></div>

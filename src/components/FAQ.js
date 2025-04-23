@@ -13,7 +13,7 @@ const FAQ = () => {
     },
     {
       question: "How long does the battery last?",
-      answer: "The standard edition includes an 8-hour battery life when recording at 1080p. The Pro Edition features an extended 12-hour battery life. Both versions include low-power standby modes and auto-save on power loss to protect your recordings."
+      answer: "Both the Standard and Pro Editions are designed for long-lasting performance, with smart power-saving features and standby modes. Auto-save ensures your recordings are protected even during unexpected power loss."
     },
     {
       question: "Is the device waterproof or weatherproof?",

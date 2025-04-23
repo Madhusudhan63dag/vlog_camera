@@ -35,7 +35,7 @@ const Features = () => {
     {
       id: 4,
       title: "Long-Lasting Battery",
-      description: "Record up to 8 hours continuously or 24+ hours on standby—never miss important moments with auto-save technology.",
+      description: "Capture every important moment with confidence, thanks to reliable auto-save technology that ensures nothing gets lost.",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 13v-1a4 4 0 00-4-4H9.4a4 4 0 00-4 4v1m8-1v2m0 4h.01M17 21H7a2 2 0 01-2-2V7a2 2 0 012-2h10a2 2 0 012 2v12a2 2 0 01-2 2z" />

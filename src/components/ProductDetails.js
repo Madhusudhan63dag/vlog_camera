@@ -1,22 +1,27 @@
 import React, { useState, useRef } from 'react';
+import img1 from '../assets/img1.jpg'
+import img2 from '../assets/img2.jpg';
+import img3 from '../assets/img3.jpg';
+import img4 from '../assets/img4.jpg';
 
 const ProductDetails = ({ onBuyNow }) => {
   const [quantity, setQuantity] = useState(1);
-  const [selectedVariant, setSelectedVariant] = useState('standard');
   const checkoutRef = useRef(null);
+  // Add state for selected image
+  const [selectedImage, setSelectedImage] = useState(img1);
 
-  const variants = {
-    standard: {
-      name: "Standard Edition",
-      basePrice: 5490,
-      features: ["4G LTE Connectivity", "4K UHD Video", "8-hour Battery Life"]
-    }
+  // Convert object to array so we can use map
+  const product_img = [img1, img2, img3, img4];
+  
+  const productDetails = {
+    name: "Standard Edition",
+    basePrice: 5490,
+    features: ["4G LTE Connectivity", "4K UHD Video"]
   };
 
-  const productImages = {
-    standard: "/images/recorder-standard.jpg",
-    pro: "/images/recorder-pro.jpg",
-    ultimate: "/images/recorder-ultimate.jpg"
+  // Handle image selection
+  const handleImageSelect = (img) => {
+    setSelectedImage(img);
   };
 
   const handleQuantityChange = (e) => {
@@ -38,11 +43,7 @@ const ProductDetails = ({ onBuyNow }) => {
     }
   };
 
-  const handleVariantChange = (variant) => {
-    setSelectedVariant(variant);
-  };
-
-  const totalPrice = variants[selectedVariant].basePrice * quantity;
+  const totalPrice = productDetails.basePrice * quantity;
 
   const formatPrice = (price) => {
     return "₹" + price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -50,7 +51,7 @@ const ProductDetails = ({ onBuyNow }) => {
 
   const handleBuyNowClick = () => {
     if (onBuyNow) {
-      onBuyNow(variants[selectedVariant], quantity, totalPrice);
+      onBuyNow(productDetails, quantity, totalPrice);
     } else {
       checkoutRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
@@ -78,20 +79,20 @@ const ProductDetails = ({ onBuyNow }) => {
       category: "Power & Storage",
       icon: "🔋",
       specs: [
-        { label: "Battery", value: "3,000 mAh Li-ion; up to 8 hrs recording" },
+        { label: "Battery", value: "Built for extended use with smart power management" },
         { label: "Storage", value: "MicroSD card slot (up to 256 GB)" },
         { label: "Cloud Backup", value: "Automatic sync when connected" }
       ]
     },
-    {
-      category: "Physical",
-      icon: "📏",
-      specs: [
-        { label: "Dimensions", value: "120 × 40 × 25 mm" },
-        { label: "Weight", value: "150 g" },
-        { label: "Controls", value: "One-click record, one-click call, power/mode switch" }
-      ]
-    }
+    // {
+    //   category: "Physical",
+    //   icon: "📏",
+    //   specs: [
+    //     { label: "Dimensions", value: "120 × 40 × 25 mm" },
+    //     { label: "Weight", value: "150 g" },
+    //     { label: "Controls", value: "One-click record, one-click call, power/mode switch" }
+    //   ]
+    // }
   ];
 
   const applications = [
@@ -197,19 +198,20 @@ const ProductDetails = ({ onBuyNow }) => {
         <div className="lg:w-1/2">
           <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-700">
             <img 
-              src={productImages[selectedVariant]} 
-              alt={`I & I vlog camera ${variants[selectedVariant].name}`} 
+              src={selectedImage} 
+              alt={`I & I vlog camera ${productDetails.name}`} 
               className="w-full h-auto object-cover"
             />
             <div className="flex justify-center gap-2 p-4 border-t border-gray-700">
-              {[1, 2, 3, 4].map((imgNum) => (
+              {product_img.map((img, index) => (
                 <div 
-                  key={imgNum} 
-                  className="w-16 h-16 border border-gray-700 rounded-md overflow-hidden cursor-pointer hover:border-brand-orange"
+                  key={index} 
+                  className={`w-16 h-16 border rounded-md overflow-hidden cursor-pointer ${selectedImage === img ? 'border-brand-orange' : 'border-gray-700 hover:border-gray-400'}`}
+                  onClick={() => handleImageSelect(img)}
                 >
                   <img 
-                    src={`/images/recorder-${selectedVariant}-angle${imgNum}.jpg`} 
-                    alt={`${variants[selectedVariant].name} angle ${imgNum}`} 
+                    src={img} 
+                    alt={`${productDetails.name} angle ${index+1}`} 
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -222,15 +224,15 @@ const ProductDetails = ({ onBuyNow }) => {
             <div className="flex flex-col justify-between h-full">
               <div>
                 <h1 className="text-4xl font-bold text-white mb-2">I & I vlog camera</h1>
-                <h2 className="text-xl text-brand-orange font-medium mb-4">{variants[selectedVariant].name}</h2>
+                <h2 className="text-xl text-brand-orange font-medium mb-4">{productDetails.name}</h2>
                 <div className="mb-6">
-                  <p className="text-3xl font-bold text-white mb-1">{formatPrice(variants[selectedVariant].basePrice)}</p>
+                  <p className="text-3xl font-bold text-white mb-1">{formatPrice(productDetails.basePrice)}</p>
                   <p className="text-green-400">Free shipping & 30-day returns</p>
                 </div>
                 <div className="mb-6">
                   <h3 className="text-lg font-medium mb-2">Key Features:</h3>
                   <ul className="space-y-2">
-                    {variants[selectedVariant].features.map((feature, idx) => (
+                    {productDetails.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-brand-orange mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -239,22 +241,6 @@ const ProductDetails = ({ onBuyNow }) => {
                       </li>
                     ))}
                   </ul>
-                </div>
-                <div className="mb-6">
-                  <h3 className="text-lg font-medium mb-2">Select Edition:</h3>
-                  <div className="flex space-x-2">
-                    {Object.keys(variants).map((key) => (
-                      <button
-                        key={key}
-                        className={`px-4 py-2 border rounded-md ${selectedVariant === key 
-                          ? 'border-brand-orange bg-brand-orange bg-opacity-20 text-brand-orange' 
-                          : 'border-gray-600 hover:border-gray-400'}`}
-                        onClick={() => handleVariantChange(key)}
-                      >
-                        {variants[key].name.split(' ')[0]}
-                      </button>
-                    ))}
-                  </div>
                 </div>
               </div>
               <div className="border-t border-gray-700 pt-6">
