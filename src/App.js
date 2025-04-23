@@ -11,6 +11,7 @@ import CallToAction from './components/CallToAction';
 import Footer from './components/Footer';
 import TermsAndConditions from './components/TermsAndConditions';
 import PrivacyPolicy from './components/PrivacyPolicy';
+import MobileCallButton from './components/MobileCallButton';
 
 function HomePage({ handleBuyNow }) {
   return (
@@ -108,6 +109,13 @@ function App() {
           <Route path="/privacy" element={<Footer />} />
           <Route path="*" element={!isCheckoutActive && <Footer />} />
         </Routes>
+        
+        {/* Mobile Call Button - only shown on main page and hidden on desktop */}
+        {!isCheckoutActive && (
+          <Routes>
+            <Route path="/" element={<MobileCallButton />} />
+          </Routes>
+        )}
       </div>
     </Router>
   );

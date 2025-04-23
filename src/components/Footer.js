@@ -4,7 +4,7 @@ import logo from '../assets/logo.png'; // Adjust the path as necessary
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-6 sm:py-8">
+    <footer className="bg-gray-900 text-white py-6 sm:py-8 pb-16 md:pb-6">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap justify-between items-start">
           {/* Logo and brief description */}

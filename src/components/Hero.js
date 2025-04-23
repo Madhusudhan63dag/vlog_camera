@@ -1,7 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import hero from '../assets/hero.jpg'; // Assuming you have a hero image in your assets folder
+import img1 from '../assets/img1.jpg'
+import img2 from '../assets/img2.jpg';
+import img3 from '../assets/img3.jpg';
+import img4 from '../assets/img4.jpg';
 
 const Hero = () => {
+    const [selectedImage, setSelectedImage] = useState(img1);
+    const product_img = [img1, img2, img3, img4];
+    
+    const productDetails = {
+      name: "Standard Edition",
+      basePrice: 5490,
+      features: ["4G LTE Connectivity", "4K UHD Video"]
+    };
+      const handleImageSelect = (img) => {
+    setSelectedImage(img);
+  };
   return (
     <section className="relative bg-gradient-to-r from-gray-900 to-black text-white py-12 sm:py-16 md:py-20 overflow-hidden">
       {/* Decorative elements */}
@@ -33,7 +48,7 @@ const Hero = () => {
             </div>
           </div>
           <div className="md:w-1/2 px-4 sm:px-8 md:px-0">
-            <div className="relative">
+            <div className="relative hidden md:block" >
               {/* Product image with trendy styling */}
               <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl h-64 sm:h-80 md:h-[26rem] w-full flex items-center justify-center shadow-2xl overflow-hidden border border-gray-700 p-4">
                 <img src={hero} alt="Hero" className="w-full h-full" />
@@ -55,6 +70,28 @@ const Hero = () => {
                 4K Ultra HD
               </div>
             </div>
+            <div className="bg-gradient-to-br block md:hidden from-gray-800 to-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-700">
+            <img 
+              src={selectedImage} 
+              alt={`I & I vlog camera ${productDetails.name}`} 
+              className="w-full h-auto object-cover"
+            />
+            <div className="flex justify-center gap-2 p-4 border-t border-gray-700">
+              {product_img.map((img, index) => (
+                <div 
+                  key={index} 
+                  className={`w-16 h-16 border rounded-md overflow-hidden cursor-pointer ${selectedImage === img ? 'border-brand-orange' : 'border-gray-700 hover:border-gray-400'}`}
+                  onClick={() => handleImageSelect(img)}
+                >
+                  <img 
+                    src={img} 
+                    alt={`${productDetails.name} angle ${index+1}`} 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
           </div>
         </div>
       </div>
