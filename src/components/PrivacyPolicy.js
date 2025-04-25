@@ -11,14 +11,14 @@ const PrivacyPolicy = () => {
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="mb-12 text-center">
           <h1 className="text-4xl font-bold mb-4 text-gray-900">Privacy Policy</h1>
-          <p className="text-gray-600">Last updated: April 22, 2025</p>
+          <p className="text-gray-600">Last updated: April 25, 2025</p>
         </div>
 
         <div className="prose prose-lg max-w-none">
           <section className="mb-10">
             <h2 className="text-2xl font-semibold mb-4 text-gray-800">Introduction</h2>
             <p className="mb-4">
-              Welcome to I & I vlog camera's Privacy Policy. This Privacy Policy describes how your personal information is collected, used, and shared when you visit our website, purchase our products, or use our services.
+              Welcome to our Privacy Policy. This Privacy Policy describes how your personal information is collected, used, and shared when you visit our website, purchase our products, or use our services.
             </p>
             <p className="mb-4">
               We respect your privacy and are committed to protecting your personal data. We want to be transparent about how we collect and use your data and to inform you about your privacy rights.
@@ -59,7 +59,8 @@ const PrivacyPolicy = () => {
               <li className="mb-2">Communicate with you;</li>
               <li className="mb-2">Screen our orders for potential risk or fraud;</li>
               <li className="mb-2">Provide you with information or advertising relating to our products or services, when in line with the preferences you have shared with us;</li>
-              <li className="mb-2">Improve and optimize our website (for example, by generating analytics about how our customers browse and interact with the website).</li>
+              <li className="mb-2">Improve and optimize our website (for example, by generating analytics about how our customers browse and interact with the website);</li>
+              <li className="mb-2">Personalize your shopping experience and provide recommendations based on your preferences and purchase history.</li>
             </ul>
             <p className="mb-4">
               We use the Device Information that we collect to help us screen for potential risk and fraud (in particular, your IP address), and more generally to improve and optimize our website.
@@ -75,6 +76,9 @@ const PrivacyPolicy = () => {
               We also use Google Analytics to help us understand how our customers use our website. You can read more about how Google uses your Personal Information here: https://www.google.com/intl/en/policies/privacy/
             </p>
             <p className="mb-4">
+              We may also share your information with shipping partners, customer service providers, and marketing services to help deliver our products and services to you.
+            </p>
+            <p className="mb-4">
               Finally, we may also share your Personal Information to comply with applicable laws and regulations, to respond to a subpoena, search warrant or other lawful request for information we receive, or to otherwise protect our rights.
             </p>
           </section>
@@ -87,32 +91,29 @@ const PrivacyPolicy = () => {
             <p className="mb-4">
               Additionally, if you are a European resident we note that we are processing your information in order to fulfill contracts we might have with you (for example if you make an order through the website), or otherwise to pursue our legitimate business interests listed above. Please note that your information will be transferred outside of Europe, including to the United States.
             </p>
+            <p className="mb-4">
+              California residents may have additional rights under the California Consumer Privacy Act (CCPA) regarding their personal information. Please contact us for more information if you are a California resident.
+            </p>
           </section>
           
           <section className="mb-10">
             <h2 className="text-2xl font-semibold mb-4 text-gray-800">Data Retention</h2>
             <p className="mb-4">
-              When you place an order through our website, we will maintain your Order Information for our records unless and until you ask us to delete this information.
+              When you place an order through our website, we will maintain your Order Information for our records unless and until you ask us to delete this information. We generally keep your data for as long as necessary for the purposes set out in this Privacy Policy, unless a longer retention period is required by law.
+            </p>
+          </section>
+
+          <section className="mb-10">
+            <h2 className="text-2xl font-semibold mb-4 text-gray-800">Security</h2>
+            <p className="mb-4">
+              We take reasonable measures to help protect your personal information from loss, theft, misuse, unauthorized access, disclosure, alteration, and destruction. All payment information is encrypted using secure socket layer technology (SSL).
             </p>
           </section>
 
           <section className="mb-10">
             <h2 className="text-2xl font-semibold mb-4 text-gray-800">Changes</h2>
             <p className="mb-4">
-              We may update this privacy policy from time to time in order to reflect, for example, changes to our practices or for other operational, legal or regulatory reasons.
-            </p>
-          </section>
-
-          <section className="mb-10">
-            <h2 className="text-2xl font-semibold mb-4 text-gray-800">Contact Us</h2>
-            <p className="mb-4">
-              For more information about our privacy practices, if you have questions, or if you would like to make a complaint, please contact us by email at privacy@iandivlog.com or by mail using the details provided below:
-            </p>
-            <p className="mb-4">
-              I & I vlog camera<br />
-              [Your Physical Address]<br />
-              [Your City, State, Postal Code]<br />
-              [Your Country]
+              We may update this privacy policy from time to time in order to reflect, for example, changes to our practices or for other operational, legal or regulatory reasons. The updated version will be indicated by an updated "Last updated" date at the top of this Privacy Policy.
             </p>
           </section>
         </div>
