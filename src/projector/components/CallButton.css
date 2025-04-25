@@ -1,0 +1,39 @@
+.call-button-container {
+  display: none; /* Hidden by default */
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  text-align: center;
+}
+
+.call-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ff6b00;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.call-button:hover {
+  background-color: #e05e00;
+  transform: translateY(-2px);
+}
+
+.call-button svg {
+  margin-right: 8px;
+}
+
+/* Mobile-only display */
+@media screen and (max-width: 768px) {
+  .call-button-container {
+    display: block;
+  }
+}

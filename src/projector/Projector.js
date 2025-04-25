@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 import Headers from './components/Headers';
 import Heros from './components/Heros';
@@ -13,6 +14,7 @@ import Footers from './components/Footers';
 import TermsAndConditionss from './components/TermsAndConditionss';
 import PrivacyPolicys from './components/PrivacyPolicys';
 import ThankYous from './components/ThankYous';
+import CallButton from './components/CallButton';
 
 function Projector() {
   // State to track selected product details
@@ -48,6 +50,15 @@ function Projector() {
 
   return (
     <>
+      <Helmet>
+        <title>4K Ultra HD Smart Projector | Premium Home Entertainment</title>
+        <meta name="description" content="Experience cinema-quality visuals at home with our 4K Ultra HD Smart Projector. Featuring Bluetooth connectivity, 10-hour battery life, and stunning display quality." />
+        <meta name="keywords" content="4K projector, smart projector, home cinema, bluetooth projector, portable projector" />
+        <meta property="og:title" content="4K Ultra HD Smart Projector" />
+        <meta property="og:description" content="Experience cinema-quality visuals at home with our premium projector." />
+        <meta property="og:type" content="product" />
+        <link rel="canonical" href="https://yourdomain.com/projector" />
+      </Helmet>
       <Headers />
       <div id="projector-hero">
         <Heros />
@@ -68,6 +79,7 @@ function Projector() {
         <CallToActions />
       </div>
       <Footers />
+      <CallButton phoneNumber="+91 9030938333" />
     </>
   );
 }

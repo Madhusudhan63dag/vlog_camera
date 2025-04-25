@@ -27,7 +27,14 @@ const ProductDetailss = ({ onBuyNow }) => {
       basePrice: 6990,
       discountPrice: 6990, // added discount price
       originalPrice: 8000, // adding original price that will be shown with strikethrough
-      features: ["1080P Full HD Resolution", "Wi-Fi 6 Connectivity", "Bluetooth 5.1", "Built-in Netflix & YouTube", "Enhanced Speaker System", "Extended Battery Life"]
+      features: [
+        "HD 720P Resolution with LCD Technology", 
+        "Android 13.0 OS with Built-in Apps",
+        "Wi-Fi 6 & Wireless Screen Mirroring", 
+        "Bluetooth 5.1 Audio Connectivity",
+        "3W Cavity Design Speaker System", 
+        "Auto Keystone Correction"
+      ]
     },
   };
 
@@ -208,164 +215,24 @@ const ProductDetailss = ({ onBuyNow }) => {
     }
   };
 
-  const specCategories = [
-    {
-      category: "Video & Display",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-        </svg>
-      ),
-      color: "#F59E0B",
-      specs: [
-        { label: "Display Resolution", value: "1080P Full HD (supports up to 4K)" },
-        { label: "Brightness", value: "400 ANSI Lumens" },
-        { label: "Keystone Correction", value: "Auto Keystone Correction" }
-      ]
-    },
-    {
-      category: "Connectivity",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
-        </svg>
-      ),
-      color: "#3B82F6",
-      specs: [
-        { label: "Wi-Fi", value: "Wi-Fi 6" },
-        { label: "Bluetooth", value: "5.1 for audio transmission" },
-        { label: "Ports", value: "HDMI, USB, AUX" }
-      ]
-    },
-    {
-      category: "Power & Storage",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-        </svg>
-      ),
-      color: "#10B981",
-      specs: [
-        { label: "Battery", value: "Built-in rechargeable battery" },
-        { label: "Weight", value: "Only 1.5 lbs (ultra-lightweight)" },
-        { label: "Power Input", value: "Standard power adapter" }
-      ]
-    },
-    {
-      category: "Physical",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-        </svg>
-      ),
-      color: "#8B5CF6",
-      specs: [
-        { label: "Dimensions", value: "12 × 8 × 6 inches" },
-        { label: "Weight", value: "3.5 pounds" },
-        { label: "Design", value: "Cute cartoon dog shape in yellow color" }
-      ]
-    }
-  ];
-
-  const applications = [
-    {
-      title: "Home Entertainment",
-      description: "Transform any wall into a cinema screen with stunning 1080P HD clarity. Perfect for movie nights, gaming sessions, and binge-watching on Netflix, YouTube, and Prime Video.",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-        </svg>
-      ),
-      image: "/images/home-entertainment.jpg",
-      color: "#F97316"
-    },
-    {
-      title: "Kid's Room Fun",
-      description: "Create magical experiences in children's rooms with animated content, educational videos, and fun projections. The cute dog-like design makes it a perfect bedside companion.",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-        </svg>
-      ),
-      image: "/images/kids-room.jpg",
-      color: "#3B82F6"
-    },
-    {
-      title: "Outdoor Adventures",
-      description: "Take movie night anywhere with ultra-lightweight portability at just 1.5 lbs. Perfect for camping trips, backyard gatherings, or impromptu presentations while traveling.",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-        </svg>
-      ),
-      image: "/images/outdoor-adventures.jpg",
-      color: "#10B981"
-    },
-    {
-      title: "Gaming & Presentations",
-      description: "Connect seamlessly to PS5, laptops, and other devices via HDMI and USB. Auto keystone correction ensures perfect image alignment from any angle.",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
-        </svg>
-      ),
-      image: "/images/business-presentations.jpg",
-      color: "#EF4444"
-    }
-  ];
-
-  const howItWorksSteps = [
-    {
-      id: 1,
-      title: "Unbox & Power",
-      description: "Unpack your projector and connect to power source.",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-        </svg>
-      )
-    },
-    {
-      id: 2,
-      title: "Connect Wi-Fi",
-      description: "Connect to Wi-Fi 6 for streaming Netflix, YouTube, and Prime Video.",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-        </svg>
-      )
-    },
-    {
-      id: 3,
-      title: "Adjust Focus",
-      description: "The projector automatically adjusts focal length for different distances.",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>
-      )
-    },
-    {
-      id: 4,
-      title: "Connect Audio",
-      description: "Use built-in speakers or connect Bluetooth headphones/speakers.",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
-        </svg>
-      )
-    },
-    {
-      id: 5,
-      title: "Enjoy!",
-      description: "Sit back and enjoy stunning visuals and audio anywhere.",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 4v16M17 4v16M3 8h18M3 16h18" />
-        </svg>
-      )
-    }
+  // Add this array with the specifications data
+  const specifications = [
+    { name: 'Projection Technology', value: 'LCD' },
+    { name: 'Resolution', value: 'HD 720P' },
+    { name: 'Brightness', value: '160 Ansi Lumens' },
+    { name: 'Throw Ratio', value: 'TR0.83' },
+    { name: 'Projection Size', value: '50–150 Inch' },
+    { name: 'OS', value: 'Android 13.0' },
+    { name: 'Wireless Screen Mirroring', value: 'Support' },
+    { name: 'Remote Control', value: 'Infrared Remote Controller' },
+    { name: 'Keystone', value: 'Vertical Auto / Four Point Correction' },
+    { name: 'Focus', value: 'Manual Focus' },
+    { name: 'Sound', value: '3W Cavity Design' },
+    { name: 'Interface', value: 'HDMI / USB / Audio Out' },
+    { name: 'Input Voltage / Power', value: 'AC100–240V / 45W' },
+    { name: 'Projector Size', value: '240×180×130mm (without ears)' },
+    { name: 'Net Weight', value: '650g' },
+    { name: 'Projector Color', value: 'Cream White (Supports Customization)' },
   ];
 
   return (
@@ -384,7 +251,7 @@ const ProductDetailss = ({ onBuyNow }) => {
             i&i Portable Mini Projector
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Cute design with powerful performance - Wi-Fi 6, Bluetooth 5.1, and 1080P Full HD
+            Cute design with powerful performance - Wi-Fi 6, Bluetooth 5.1, and 720P Full HD
           </p>
         </div>
 
@@ -626,7 +493,66 @@ const ProductDetailss = ({ onBuyNow }) => {
         </div>
 
         {/* Tabbed content section - Existing content */}
-       
+        <div className="mb-20">
+          <div className="border-b border-gray-800 mb-8">
+            <div className="flex space-x-8">
+              <button
+                className={`pb-4 text-lg font-medium ${
+                  activeTab === 'specs' 
+                    ? 'border-b-2 border-[#FD5201] text-white' 
+                    : 'text-gray-400 hover:text-gray-200'
+                }`}
+                onClick={() => setActiveTab('specs')}
+              >
+                Specifications
+              </button>
+              <button
+                className={`pb-4 text-lg font-medium ${
+                  activeTab === 'features' 
+                    ? 'border-b-2 border-[#FD5201] text-white' 
+                    : 'text-gray-400 hover:text-gray-200'
+                }`}
+                onClick={() => setActiveTab('features')}
+              >
+                Key Features
+              </button>
+            </div>
+          </div>
+
+          {activeTab === 'specs' && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {specifications.map((spec, index) => (
+                <div 
+                  key={index}
+                  className="bg-gray-900/50 p-6 rounded-xl border border-gray-800/60"
+                >
+                  <div className="flex justify-between items-start">
+                    <span className="text-gray-400 text-sm">{spec.name}</span>
+                    <span className="text-white font-medium text-right ml-4">{spec.value}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {activeTab === 'features' && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {variants[selectedVariant].features.map((feature, index) => (
+                <div 
+                  key={index}
+                  className="flex items-start bg-gray-900/50 p-6 rounded-xl border border-gray-800/60"
+                >
+                  <div className="flex-shrink-0 mt-1 w-6 h-6 rounded-full bg-[#FD5201]/20 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-[#FD5201]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span className="ml-4 text-gray-300">{feature}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
 
         {/* Bottom CTA card - Keep same as original */}
       </div>
@@ -744,4 +670,35 @@ export default ProductDetailss;
 //             {/* Content unchanged from original */}
 //           </div>
 //         </div>
-// discount price should add
+
+// Projection Technology: LCD
+
+// Resolution: HD 720P
+
+// Brightness: 160 Ansi Lumens
+
+// Throw Ratio: TR0.83
+
+// Projection Size: 50–150 Inch
+
+// OS: Android 13.0
+
+// Wireless Screen Mirroring: Support
+
+// Remote Control: Infrared Remote Controller
+
+// Keystone: Vertical Auto / Four Point Correction
+
+// Focus: Manual Focus
+
+// Sound: 3W Cavity Design
+
+// Interface: HDMI / USB / Audio Out
+
+// Input Voltage / Power: AC100–240V / 45W
+
+// Projector Size: 240×180×130mm (without ears)
+
+// Net Weight: 650g
+
+// Projector Color: Cream White (Supports Customization)

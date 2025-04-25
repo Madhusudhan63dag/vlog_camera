@@ -1,6 +1,7 @@
 import React from 'react';
 import Checkout from './components/Checkout';
 import { useLocation } from 'react-router-dom';
+import SEO from './components/SEO';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -24,6 +25,12 @@ function CheckoutPage() {
 
   return (
     <div className="checkout-page">
+      <SEO 
+        title={`Checkout - ${selectedVariant.name}`}
+        description={`Complete your order for the I&I Vlog Camera ${selectedVariant.name}. Professional 4K Ultra HD portable recorder.`}
+        url="/checkout"
+        noindex={true}
+      />
       <Header />
       <div id="checkout">
         <Checkout

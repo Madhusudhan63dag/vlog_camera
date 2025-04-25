@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 // Import Razorpay script dynamically
 const loadRazorpayScript = () => {
@@ -679,6 +680,16 @@ const Checkouts = ({ selectedVariant, quantity, totalPrice, onBack }) => {
 
   return (
     <section className="py-16 bg-gradient-to-b from-black to-gray-900 text-white relative">
+      <Helmet>
+        <title>Checkout - 4K Ultra HD Smart Projector</title>
+        <meta name="description" content="Complete your purchase of our premium 4K Ultra HD Smart Projector with secure payment options including Razorpay and Cash on Delivery." />
+        <meta name="robots" content="noindex" />
+        <meta property="og:title" content="Checkout - 4K Ultra HD Smart Projector" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="Complete your purchase of our premium 4K Ultra HD Smart Projector with secure checkout." />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Helmet>
+      
       {/* Loading Overlay - Will show when processing payment */}
       {isProcessingPayment && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50" style={{ cursor: 'not-allowed' }}>

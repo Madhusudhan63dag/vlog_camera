@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { initGA } from './utils/analytics';
+import PageTracker from './components/PageTracker';
 import Vlog from './vlog/Vlog';
 import Projector from './projector/Projector';
 import CheckoutPage from './vlog/Checkout';
@@ -11,9 +13,16 @@ import ThankYouPages from './projector/ThankYous';
 import ReturnPolicy from './components/ReturnPolicy';
 
 const App = () => {
+  useEffect(() => {
+    // Initialize Google Analytics when the app mounts
+    initGA();
+  }, []);
+
   return (
     <div>
       <Router>
+        {/* PageTracker monitors route changes and sends page view events to Google Analytics */}
+        <PageTracker />
         <Routes>
           <Route path="/" element={<Vlog />} />
           <Route path="/checkout" element={<CheckoutPage />} />

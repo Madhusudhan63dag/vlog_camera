@@ -4,28 +4,28 @@ const FAQs = () => {
   // FAQ items data structure
   const faqItems = [
     {
-      question: "How does the Wi-Fi 6 connectivity work?",
-      answer: "The projector features built-in Wi-Fi 6 for faster and more stable internet connection. Once connected to your home network, you can access streaming services like Netflix, YouTube, and Prime Video directly from the projector without additional devices."
+      question: "What are the technical specifications of this projector?",
+      answer: "The i&i Portable Mini Projector features LCD projection technology with HD 720P resolution, 160 Ansi Lumens brightness, and a throw ratio of TR0.83. It can project images from 50 to 150 inches in size and runs on Android 13.0. The projector weighs just 650g and measures 240×180×130mm (without ears)."
     },
     {
       question: "What's the maximum resolution supported by this projector?",
-      answer: "The i&i Portable Mini Projector displays content at 1080P Full HD resolution and supports playback of content up to 4K. This ensures sharp, clear imagery whether you're watching movies, playing games, or giving presentations."
+      answer: "The i&i Portable Mini Projector displays content at HD 720P resolution. This ensures sharp, clear imagery whether you're watching movies, playing games, or giving presentations."
     },
     {
       question: "How does the Auto Keystone Correction feature work?",
-      answer: "The projector automatically adjusts the image to create a perfect rectangular picture even when projected at an angle. It also adjusts the focal length based on the distance from the projection surface, making setup quick and hassle-free."
+      answer: "The projector features Vertical Auto / Four Point Correction that automatically adjusts the image to create a perfect rectangular picture even when projected at an angle. The manual focus allows you to adjust clarity based on the distance from the projection surface, making setup quick and hassle-free."
     },
     {
-      question: "Is the projector suitable for outdoor use?",
-      answer: "Yes! Weighing only 1.5 lbs, this ultra-lightweight projector is designed for both indoor and outdoor use. It's portable enough to take camping, to backyard movie nights, or on trips. The built-in battery allows for completely wireless operation."
+      question: "What connectivity options does the projector offer?",
+      answer: "The projector comes with multiple interfaces including HDMI, USB, and Audio Out. It also supports Wi-Fi connectivity and Wireless Screen Mirroring for wireless content streaming. For audio, it features Bluetooth 5.1 technology to connect wireless speakers or headphones."
     },
     {
-      question: "How does the Bluetooth 5.1 functionality work?",
-      answer: "The projector is equipped with Bluetooth 5.1 technology for faster and more stable audio synchronization. You can wirelessly connect Bluetooth speakers or headphones for an enhanced audio experience. Note that Bluetooth connectivity is specifically for audio transmission with audio devices."
+      question: "How does the sound system work?",
+      answer: "The projector is equipped with a 3W Cavity Design sound system for rich audio. Additionally, it features Bluetooth 5.1 technology for faster and more stable audio synchronization. You can wirelessly connect Bluetooth speakers or headphones for an enhanced audio experience."
     },
     {
-      question: "What devices can I connect to the projector?",
-      answer: "The projector supports multiple devices including HDMI, TV Stick, PS5, smartphones, and laptops for diverse entertainment and presentation needs. This versatile compatibility ensures you can enjoy content from virtually any source."
+      question: "What is the power consumption and voltage requirement?",
+      answer: "The projector operates on AC100–240V input voltage and consumes 45W of power, making it energy efficient while providing excellent performance."
     },
     {
       question: "What is included with the warranty?",

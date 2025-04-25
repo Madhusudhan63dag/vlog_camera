@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 const ThankYous = () => {
   // Mock data for order details - in a real app, this would come from your state management or API
@@ -14,6 +15,13 @@ const ThankYous = () => {
 
   return (
     <section className="min-h-screen py-16 bg-gradient-to-b from-black to-[#0a1622] text-white flex items-center">
+      <Helmet>
+        <title>Order Confirmation - Thank You | 4K Ultra HD Smart Projector</title>
+        <meta name="description" content="Thank you for your order of the 4K Ultra HD Smart Projector. Your purchase is confirmed and will be processed shortly." />
+        <meta name="robots" content="noindex, nofollow" />
+        <meta property="og:title" content="Order Confirmation - Thank You" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto bg-gradient-to-br from-[#0a1622]/90 to-black/70 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-800/60 p-8">
           <div className="text-center mb-8">

@@ -6,8 +6,8 @@ const Featuress = () => {
   const featuresList = [
     {
       id: 1,
-      title: "1080P Full HD Resolution",
-      description: "Experience stunning clarity with 1080P Full HD resolution that supports up to 4K content—perfect for movies, shows, and presentations on any wall.",
+      title: "HD 720P Resolution with LCD Technology",
+      description: "Experience stunning clarity with 720P LCD projection that delivers crisp, vibrant images with 160 Ansi Lumens brightness—perfect for movies, shows, and presentations on screens up to 150 inches.",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
@@ -17,8 +17,8 @@ const Featuress = () => {
     },
     {
       id: 2,
-      title: "Wi-Fi 6 Connectivity",
-      description: "Connect seamlessly to your favorite streaming services with ultra-fast Wi-Fi 6 connectivity for buffer-free entertainment and smoother streaming.",
+      title: "Android 13.0 OS with Wireless Screen Mirroring",
+      description: "Enjoy the latest Android 13.0 operating system with wireless screen mirroring support for seamless content sharing from your devices.",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
@@ -28,8 +28,8 @@ const Featuress = () => {
     },
     {
       id: 3,
-      title: "Bluetooth 5.1 Audio",
-      description: "Faster and more stable audio synchronization with Bluetooth 5.1. Connect wirelessly to speakers or headphones for an enhanced audio experience without cable clutter.",
+      title: "3W Cavity Design Sound System",
+      description: "Immerse yourself in rich audio with the 3W cavity design speaker system and Bluetooth 5.1 connectivity for enhanced wireless audio experiences.",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
@@ -39,8 +39,8 @@ const Featuress = () => {
     },
     {
       id: 4,
-      title: "Built-in Streaming Apps",
-      description: "Netflix, YouTube, and Prime Video ready with preloaded apps for instant entertainment access without additional devices or setup.",
+      title: "Multiple Interface Connectivity",
+      description: "Connect to a variety of devices through HDMI, USB, and Audio Out interfaces for versatile entertainment options.",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
@@ -162,7 +162,7 @@ const Featuress = () => {
                   </div>
                   <h3 className="text-3xl font-bold mb-3 text-white">Cute Design, Powerful Performance</h3>
                   <p className="text-gray-300 text-lg">
-                    This adorable portable projector supports Wi-Fi 6, plays 1080P content (up to 4K), and works with USB, HDMI, TV sticks, computers, and more for movies and music. Ultra-lightweight at only 1.5 lbs, perfect for indoor & outdoor use.
+                    This adorable portable projector supports Wi-Fi 6, plays 720P content (up to 4K), and works with USB, HDMI, TV sticks, computers, and more for movies and music. Ultra-lightweight at only 1.5 lbs, perfect for indoor & outdoor use.
                   </p>
                 </div>
                 

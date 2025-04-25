@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import SEO from './components/SEO';
 
 // Import local vlog components
 import Hero from './components/Hero';
@@ -45,6 +46,14 @@ function Vlog() {
 
   return (
     <>
+      <SEO 
+        title="4G Connected 4K Ultra HD Portable Recorder"
+        description="Professional 4G-connected 4K Ultra HD portable recorder with SOS calling & 180° lens. Perfect for vloggers, content creators, and professionals."
+        keywords="4G vlog camera, portable recorder, 4K video camera, streaming camera, SOS calling"
+        url="/"
+        image="/og-image.jpg"
+        type="product"
+      />
       <Header />
       <div id="hero">
         <Hero />

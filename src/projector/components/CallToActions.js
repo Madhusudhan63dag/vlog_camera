@@ -248,8 +248,8 @@ const CallToActions = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-bold mb-2 text-white">Main Office</h3>
-              <p className="text-gray-400">123 Tech Boulevard</p>
-              <p className="font-medium mt-2 text-[#FD5201]">San Francisco, CA 94105</p>
+              <p className="text-gray-400">Begumpet, Hyderabad</p>
+              <p className="font-medium mt-2 text-[#FD5201]">Telangana 500016</p>
             </div>
           </div>
         </div>
