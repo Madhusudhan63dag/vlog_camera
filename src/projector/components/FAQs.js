@@ -5,7 +5,7 @@ const FAQs = () => {
   const faqItems = [
     {
       question: "What are the technical specifications of this projector?",
-      answer: "The i&i Portable Mini Projector features LCD projection technology with HD 720P resolution, 160 Ansi Lumens brightness, and a throw ratio of TR0.83. It can project images from 50 to 150 inches in size and runs on Android 13.0. The projector weighs just 650g and measures 240×180×130mm (without ears)."
+      answer: "The i&i Portable Mini Projector features LCD projection technology with HD 720P resolution, and a throw ratio of TR0.83. It can project images from 50 to 150 inches in size and runs on Android 13.0."
     },
     {
       question: "What's the maximum resolution supported by this projector?",
@@ -26,10 +26,6 @@ const FAQs = () => {
     {
       question: "What is the power consumption and voltage requirement?",
       answer: "The projector operates on AC100–240V input voltage and consumes 45W of power, making it energy efficient while providing excellent performance."
-    },
-    {
-      question: "What is included with the warranty?",
-      answer: "The i&i Portable Mini Projector comes with a 1-year warranty. If you encounter any issues during this period, you can contact customer support, and they'll resolve your problem as quickly as possible."
     }
   ];
   

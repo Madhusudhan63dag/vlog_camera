@@ -9,6 +9,7 @@ import product6 from '../assets/product6.jpg';
 import product7 from '../assets/product7.jpg';
 import product8 from '../assets/product8.jpg';
 import video from '../assets/video.mp4';
+import video2 from '../assets/video2.mp4';
 
 
 const ProductDetailss = ({ onBuyNow }) => {
@@ -17,9 +18,11 @@ const ProductDetailss = ({ onBuyNow }) => {
   const [activeTab, setActiveTab] = useState('specs');
   const [activeSpecCategory, setActiveSpecCategory] = useState('Video & Display');
   const [selectedImage, setSelectedImage] = useState(0);
+  const [videoPlayed, setVideoPlayed] = useState(false);
   const checkoutRef = useRef(null);
   const productRef = useRef(null);
   const galleryRef = useRef(null);
+  const videoRef = useRef(null);
 
   const variants = {
     standard: {
@@ -219,9 +222,7 @@ const ProductDetailss = ({ onBuyNow }) => {
   const specifications = [
     { name: 'Projection Technology', value: 'LCD' },
     { name: 'Resolution', value: 'HD 720P' },
-    { name: 'Brightness', value: '160 Ansi Lumens' },
     { name: 'Throw Ratio', value: 'TR0.83' },
-    { name: 'Projection Size', value: '50–150 Inch' },
     { name: 'OS', value: 'Android 13.0' },
     { name: 'Wireless Screen Mirroring', value: 'Support' },
     { name: 'Remote Control', value: 'Infrared Remote Controller' },
@@ -230,10 +231,19 @@ const ProductDetailss = ({ onBuyNow }) => {
     { name: 'Sound', value: '3W Cavity Design' },
     { name: 'Interface', value: 'HDMI / USB / Audio Out' },
     { name: 'Input Voltage / Power', value: 'AC100–240V / 45W' },
-    { name: 'Projector Size', value: '240×180×130mm (without ears)' },
-    { name: 'Net Weight', value: '650g' },
     { name: 'Projector Color', value: 'Cream White (Supports Customization)' },
   ];
+
+  const handlePlayDemoClick = () => {
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        videoRef.current.play();
+        setVideoPlayed(true);
+      } else {
+        videoRef.current.pause();
+      }
+    }
+  };
 
   return (
     <section id="product-details" className="py-16 bg-gradient-to-br from-[#050a10] to-[#0a1018] relative overflow-hidden">
@@ -470,6 +480,32 @@ const ProductDetailss = ({ onBuyNow }) => {
             <div className="w-24 h-1 bg-gradient-to-r from-[#FD5201] to-[#36A8DA] mx-auto mb-4"></div>
             <p className="text-gray-400">Explore our product from every angle</p>
           </div> */}
+
+          <div className="mt-12 w-2xl mx-auto bg-gradient-to-br from-gray-800 to-gray-900 p-4 rounded-lg shadow-md border border-gray-700">
+          <div className="relative pb-[56.25%] h-0 rounded overflow-hidden">
+            <video 
+              ref={videoRef}
+              src={video2} 
+              className="absolute inset-0 w-full h-full object-cover"
+              controls
+              autoPlay
+              muted
+              poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 24 24'%3E%3Cpath fill='%23FF6B00' d='M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1-11v6l5-3-5-3z'/%3E%3C/svg%3E"
+              onClick={handlePlayDemoClick}
+              onPlay={() => setVideoPlayed(true)}
+            />
+            {!videoPlayed && (
+              <div className="absolute inset-0 flex items-center justify-center hover:bg-black hover:bg-opacity-30 transition-colors cursor-pointer" onClick={handlePlayDemoClick}>
+                <div className="bg-brand-orange bg-opacity-90 rounded-full p-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {galleryImages.map((image, index) => (
