@@ -97,13 +97,13 @@ const Header = () => {
           </nav>
           
           <div className="hidden md:flex items-center space-x-3">
-            <a href="#contact" className={`font-medium px-4 py-2 rounded-md transition-colors ${
+            <a href="/#contact" className={`font-medium px-4 py-2 rounded-md transition-colors ${
               isScrolled ? 'text-blue-600 hover:bg-blue-50' : 'text-white hover:bg-white hover:bg-opacity-10'
             }`}>
               Support
             </a>
             <a 
-              href="#product" 
+              href="/#product" 
               className="bg-blue-500 text-white hover:bg-blue-600 font-medium py-2 px-6 rounded-lg transition duration-300 transform hover:scale-105 hover:shadow-md"
             >
               Order Now
@@ -146,7 +146,7 @@ const Header = () => {
                 {navLinks.map((link) => (
                   <a 
                     key={link.id}
-                    href={`#${link.id}`}
+                    href={`/#${link.id}`}
                     onClick={() => setIsMenuOpen(false)}
                     className={`py-3 px-4 font-medium border-b border-gray-100 ${
                       activeSection === link.id 
@@ -158,7 +158,7 @@ const Header = () => {
                   </a>
                 ))}
                 <a 
-                  href="#contact"
+                  href="/#contact"
                   onClick={() => setIsMenuOpen(false)} 
                   className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 py-3 px-4 font-medium border-b border-gray-100"
                 >
@@ -166,7 +166,7 @@ const Header = () => {
                 </a>
                 <div className="p-4">
                   <a
-                    href="#product"
+                    href="/#product"
                     onClick={() => setIsMenuOpen(false)}
                     className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-4 rounded-lg block text-center"
                   >

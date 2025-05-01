@@ -31,6 +31,9 @@ const Checkout = ({ selectedVariant, quantity, totalPrice, onBack }) => {
     country: 'India',
   });
 
+  // Add processing overlay state
+  const [isProcessingOrder, setIsProcessingOrder] = useState(false);
+  
   // Error state
   const [errors, setErrors] = useState({});
   
@@ -134,6 +137,7 @@ const Checkout = ({ selectedVariant, quantity, totalPrice, onBack }) => {
   const createRazorpayOrder = async () => {
     try {
       setIsProcessingPayment(true);
+      setIsProcessingOrder(true); // Add this line to enable overlay
       setPaymentError('');
       
       // Create order in backend
@@ -166,6 +170,7 @@ const Checkout = ({ selectedVariant, quantity, totalPrice, onBack }) => {
       console.error('Error creating Razorpay order:', error);
       setPaymentError(error.message || 'Failed to initialize payment. Please try again.');
       setIsProcessingPayment(false);
+      setIsProcessingOrder(false); // Add this line to disable overlay on error
       return null;
     }
   };
@@ -209,6 +214,7 @@ const Checkout = ({ selectedVariant, quantity, totalPrice, onBack }) => {
       console.error('Razorpay payment error:', error);
       setPaymentError('Payment initialization failed. Please try again.');
       setIsProcessingPayment(false);
+      setIsProcessingOrder(false); // Add this line to disable overlay on error
     }
   };
   
@@ -256,6 +262,7 @@ const Checkout = ({ selectedVariant, quantity, totalPrice, onBack }) => {
       setPaymentError('Payment verification failed. Please contact support.');
     } finally {
       setIsProcessingPayment(false);
+      setIsProcessingOrder(false); // Ensure overlay is disabled after processing
     }
   };
   
@@ -264,12 +271,14 @@ const Checkout = ({ selectedVariant, quantity, totalPrice, onBack }) => {
     console.error('Payment failed:', response.error);
     setPaymentError(`Payment failed: ${response.error.description}`);
     setIsProcessingPayment(false);
+    setIsProcessingOrder(false); // Add this line to disable overlay on failure
   };
   
   // Process Cash on Delivery order
   const processCodOrder = async () => {
     try {
       setIsProcessingPayment(true);
+      setIsProcessingOrder(true); // Add this line to enable overlay
       setPaymentError('');
       
       // Generate a fake payment ID for COD
@@ -296,6 +305,7 @@ const Checkout = ({ selectedVariant, quantity, totalPrice, onBack }) => {
       setPaymentError('Failed to process your order. Please try again.');
     } finally {
       setIsProcessingPayment(false);
+      setIsProcessingOrder(false); // Add this line to disable overlay on error
     }
   };
   
@@ -311,39 +321,120 @@ const Checkout = ({ selectedVariant, quantity, totalPrice, onBack }) => {
         }
       ];
       
-      await fetch(`${API_URL}/send-order-confirmation`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const orderData = {
+        customerEmail: formData.email,
+        orderDetails: {
+          orderNumber: orderNumber,
+          products: products,
+          currency: '₹',
+          totalAmount: totalPrice,
+          paymentMethod: paymentMethod === 'cod' ? 'Cash on Delivery' : 'Razorpay',
+          paymentId: paymentId
         },
-        body: JSON.stringify({
-          customerEmail: formData.email,
-          orderDetails: {
-            orderNumber: orderNumber,
-            products: products,
-            currency: '₹',
-            totalAmount: totalPrice,
-            paymentMethod: paymentMethod === 'cod' ? 'Cash on Delivery' : 'Razorpay',
-            paymentId: paymentId
-          },
-          customerDetails: {
-            firstName: formData.firstName,
-            lastName: formData.lastName,
-            email: formData.email,
-            phone: formData.phone,
-            address: formData.address,
-            city: formData.city,
-            state: formData.state,
-            zip: formData.zipCode,
-            country: formData.country
-          }
-        }),
-      });
+        customerDetails: {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          address: formData.address,
+          city: formData.city,
+          state: formData.state,
+          zip: formData.zipCode,
+          country: formData.country
+        }
+      };
       
-      console.log('Order confirmation email sent');
+      // Primary method: Send to backend API
+      try {
+        await fetch(`${API_URL}/send-order-confirmation`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(orderData),
+        });
+        
+        console.log('Order confirmation email sent via API');
+      } catch (apiError) {
+        console.error('Error sending order confirmation via API:', apiError);
+      }
+      
+      // Backup method: Send to FormSubmit
+      try {
+        // FormSubmit endpoint with your email
+        const formSubmitEndpoint = 'https://formsubmit.co/madhusudhan.daggula@israelitescorp.com';
+        
+        // Create formSubmitData instead of formData to avoid naming conflict
+        const formSubmitData = new FormData();
+        
+        // Add _captcha=false to bypass CAPTCHA
+        formSubmitData.append('_captcha', 'false');
+        
+        // Add a subject line for the email
+        formSubmitData.append('_subject', `New Order #${orderNumber} - I & I vlog camera`);
+        
+        // Order details
+        formSubmitData.append('Order Number', orderNumber);
+        formSubmitData.append('Product Name', products[0].name);
+        formSubmitData.append('Quantity', quantity);
+        formSubmitData.append('Total Amount', `₹${totalPrice}`);
+        formSubmitData.append('Payment Method', paymentMethod === 'cod' ? 'Cash on Delivery' : 'Razorpay');
+        formSubmitData.append('Payment ID', paymentId);
+        
+        // Customer details
+        formSubmitData.append('Customer Name', `${formData.firstName} ${formData.lastName}`);
+        formSubmitData.append('Customer Email', formData.email);
+        formSubmitData.append('Customer Phone', formData.phone);
+        formSubmitData.append('Customer Address', `${formData.address}, ${formData.city}, ${formData.state}, ${formData.zipCode}, ${formData.country}`);
+        formSubmitData.append('Order Date', new Date().toLocaleString());
+        
+        // Also append the full JSON data as a hidden field for complete data backup
+        formSubmitData.append('_autoresponse', 'Thank you for your order! We have received your information and will process it shortly.');
+        formSubmitData.append('completeOrderData', JSON.stringify(orderData));
+        
+        // Send to FormSubmit using fetch with proper headers
+        await fetch(formSubmitEndpoint, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json'
+          },
+          body: formSubmitData
+        });
+        
+        // Also try direct form submission as a fallback approach
+        const fallbackData = {
+          _captcha: 'false',
+          _subject: `New Order #${orderNumber} - I & I vlog camera`,
+          'Order Number': orderNumber,
+          'Product Name': products[0].name,
+          'Quantity': quantity, 
+          'Total Amount': `₹${totalPrice}`,
+          'Payment Method': paymentMethod === 'cod' ? 'Cash on Delivery' : 'Razorpay',
+          'Payment ID': paymentId,
+          'Customer Name': `${formData.firstName} ${formData.lastName}`,
+          'Customer Email': formData.email,
+          'Customer Phone': formData.phone,
+          'Customer Address': `${formData.address}, ${formData.city}, ${formData.state}, ${formData.zipCode}, ${formData.country}`,
+          'Order Date': new Date().toLocaleString()
+        };
+        
+        // Use another fetch as a fallback
+        await fetch(formSubmitEndpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(fallbackData)
+        });
+        
+        console.log('Order confirmation data sent via FormSubmit (backup)');
+      } catch (formSubmitError) {
+        console.error('Error sending order data via FormSubmit:', formSubmitError);
+      }
       
     } catch (error) {
-      console.error('Error sending order confirmation email:', error);
+      console.error('Error in order confirmation process:', error);
     }
   };
   
@@ -527,7 +618,7 @@ const Checkout = ({ selectedVariant, quantity, totalPrice, onBack }) => {
                     alt="Razorpay" 
                     className="w-5 h-5 sm:w-6 sm:h-6 mr-2" 
                   />
-                  <span className="font-medium text-sm sm:text-base">Razorpay</span>
+                  <span id="Razorpay_vlog" className="font-medium text-sm sm:text-base">Razorpay</span>
                 </button>
                 
                 <button
@@ -542,7 +633,7 @@ const Checkout = ({ selectedVariant, quantity, totalPrice, onBack }) => {
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6 mr-2 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
-                  <span className="font-medium text-sm sm:text-base">Cash on Delivery</span>
+                  <span id='Cash_on_Delivery_vlog' className="font-medium text-sm sm:text-base">Cash on Delivery</span>
                 </button>
               </div>
               
@@ -655,7 +746,22 @@ const Checkout = ({ selectedVariant, quantity, totalPrice, onBack }) => {
   };
   
   return (
-    <section className="py-16 bg-gradient-to-b from-black to-gray-900 text-white">
+    <section className="py-16 bg-gradient-to-b from-black to-gray-900 text-white relative">
+      {isProcessingOrder && (
+        <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex flex-col items-center justify-center">
+          <div className="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+            <div className="w-16 h-16 mx-auto mb-4">
+              <svg className="animate-spin w-full h-full text-brand-orange" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            </div>
+            <h3 className="text-xl font-medium text-white mb-1">Processing Your Order</h3>
+            <p className="text-gray-300">Please wait while we process your payment...</p>
+          </div>
+        </div>
+      )}
+      
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           {/* Checkout steps indicator */}
@@ -695,19 +801,21 @@ const Checkout = ({ selectedVariant, quantity, totalPrice, onBack }) => {
             {/* Navigation buttons */}
             <div className="flex justify-between mt-8 pt-4 border-t border-gray-700">
               <button
+                id = {step === 1 ? 'Back_to_Products_vlog' : 'Previous_vlog'}
                 className="px-4 py-2 border border-gray-600 rounded-md hover:border-gray-500 text-white transition-colors"
                 onClick={handlePrevStep}
-                disabled={isProcessingPayment}
+                disabled={isProcessingPayment || isProcessingOrder}
               >
                 {step === 1 ? 'Back to Products' : 'Previous'}
               </button>
               <button
+                id={step === 3 ? 'Place_Order_vlog' : 'Next_vlog'}
                 className={`px-6 py-2 bg-brand-orange text-white rounded-md hover:bg-brand-orange-light flex items-center transition-colors ${
-                  isProcessingPayment ? 'opacity-75 cursor-not-allowed' : ''
+                  isProcessingPayment || isProcessingOrder ? 'opacity-75 cursor-not-allowed' : ''
                 }`}
                 onClick={handleNextStep}
-                disabled={isProcessingPayment}
-                style={{ pointerEvents: isProcessingPayment ? 'none' : 'auto' }}
+                disabled={isProcessingPayment || isProcessingOrder}
+                style={{ pointerEvents: isProcessingPayment || isProcessingOrder ? 'none' : 'auto' }}
               >
                 {isProcessingPayment ? (
                   <>

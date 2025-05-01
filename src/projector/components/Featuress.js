@@ -29,7 +29,7 @@ const Featuress = () => {
     {
       id: 3,
       title: "3W Cavity Design Sound System",
-      description: "Immerse yourself in rich audio with the 3W cavity design speaker system and Bluetooth 5.1 connectivity for enhanced wireless audio experiences.",
+      description: "Immerse yourself in rich audio with the 3W cavity design speaker system and Bluetooth 5.0 connectivity for enhanced wireless audio experiences.",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
@@ -265,12 +265,12 @@ const Featuress = () => {
                   </div>
                 </div>
                 <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-[#36A8DA] transition-colors">Enhanced Audio Experience</h3>
-                <p className="text-gray-400">Enjoy premium sound with upgraded built-in speakers and Bluetooth 5.1 technology for faster, more stable audio synchronization. Connect wirelessly to Bluetooth speakers or headphones for an immersive cinematic audio experience.</p>
+                <p className="text-gray-400">Enjoy premium sound with upgraded built-in speakers and Bluetooth 5.0 technology for faster, more stable audio synchronization. Connect wirelessly to Bluetooth speakers or headphones for an immersive cinematic audio experience.</p>
               </div>
               
               <div className="mt-6">
                 <div className="flex flex-wrap gap-2 mt-4">
-                  <span className="px-3 py-1 bg-white/5 rounded-full text-xs text-gray-300">Bluetooth 5.1</span>
+                  <span className="px-3 py-1 bg-white/5 rounded-full text-xs text-gray-300">Bluetooth 5.0</span>
                   <span className="px-3 py-1 bg-white/5 rounded-full text-xs text-gray-300">Enhanced Speakers</span>
                   <span className="px-3 py-1 bg-white/5 rounded-full text-xs text-gray-300">Wireless Audio</span>
                 </div>

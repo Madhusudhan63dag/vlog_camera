@@ -82,7 +82,7 @@ const Headers = () => {
             {navLinks.map((link) => (
               <a 
                 key={link.id}
-                href={`#${link.id}`} 
+                href={`/projector#${link.id}`} 
                 className={`px-3 py-2 rounded-md transition-colors duration-300 font-medium ${
                   activeSection === link.id 
                     ? `text-[#FD5201] bg-[#FD5201]/10 border border-[#FD5201]/30` 
@@ -97,13 +97,13 @@ const Headers = () => {
           </nav>
           
           <div className="hidden md:flex items-center space-x-3">
-            <a href="#contact" className={`font-medium px-4 py-2 rounded-md transition-colors ${
+            <a href="/projector#contact" className={`font-medium px-4 py-2 rounded-md transition-colors ${
               isScrolled ? 'text-[#36A8DA] hover:bg-[#36A8DA]/10' : 'text-white hover:bg-white hover:bg-opacity-10'
             }`}>
               Support
             </a>
             <a 
-              href="#features" 
+              href="/projector#features" 
               className="bg-gradient-to-r from-[#FD5201] to-[#FD5201]/90 hover:from-[#FD5201]/90 hover:to-[#FD5201] text-white font-medium py-2 px-6 rounded-lg transition duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
             >
               Order Now
@@ -146,7 +146,7 @@ const Headers = () => {
                 {navLinks.map((link) => (
                   <a 
                     key={link.id}
-                    href={`#${link.id}`}
+                    href={`/projector#${link.id}`}
                     onClick={() => setIsMenuOpen(false)}
                     className={`py-3 px-4 font-medium border-b border-gray-800 ${
                       activeSection === link.id 
@@ -158,7 +158,7 @@ const Headers = () => {
                   </a>
                 ))}
                 <a 
-                  href="#contact"
+                  href="/projector#contact"
                   onClick={() => setIsMenuOpen(false)} 
                   className="text-gray-300 hover:text-[#36A8DA] hover:bg-[#36A8DA]/10 py-3 px-4 font-medium border-b border-gray-800"
                 >

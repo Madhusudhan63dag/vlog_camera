@@ -17,11 +17,11 @@ const FAQs = () => {
     },
     {
       question: "What connectivity options does the projector offer?",
-      answer: "The projector comes with multiple interfaces including HDMI, USB, and Audio Out. It also supports Wi-Fi connectivity and Wireless Screen Mirroring for wireless content streaming. For audio, it features Bluetooth 5.1 technology to connect wireless speakers or headphones."
+      answer: "The projector comes with multiple interfaces including HDMI, USB, and Audio Out. It also supports Wi-Fi connectivity and Wireless Screen Mirroring for wireless content streaming. For audio, it features Bluetooth 5.0 technology to connect wireless speakers or headphones."
     },
     {
       question: "How does the sound system work?",
-      answer: "The projector is equipped with a 3W Cavity Design sound system for rich audio. Additionally, it features Bluetooth 5.1 technology for faster and more stable audio synchronization. You can wirelessly connect Bluetooth speakers or headphones for an enhanced audio experience."
+      answer: "The projector is equipped with a 3W Cavity Design sound system for rich audio. Additionally, it features Bluetooth 5.0 technology for faster and more stable audio synchronization. You can wirelessly connect Bluetooth speakers or headphones for an enhanced audio experience."
     },
     {
       question: "What is the power consumption and voltage requirement?",

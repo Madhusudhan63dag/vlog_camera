@@ -111,13 +111,13 @@ const ThankYous = () => {
           
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
             <Link 
-              to="/recorder" 
+              to="/projector"  
               className="bg-gradient-to-r from-[#36A8DA] to-[#36A8DA]/80 hover:from-[#36A8DA]/80 hover:to-[#36A8DA] text-white py-3 px-8 rounded-lg font-bold transition-all duration-300 shadow-lg transform hover:-translate-y-0.5 w-full sm:w-auto text-center"
             >
               Return to Home
             </Link>
             <Link 
-              to="/recorder#contact" 
+              to="/projector#contact" 
               className="bg-gradient-to-r from-[#0a1622] to-[#0a1622]/90 hover:from-[#0a1622]/90 hover:to-[#0a1622] text-white py-3 px-8 rounded-lg font-bold border border-[#FD5201] transition-all duration-300 shadow-lg transform hover:-translate-y-0.5 w-full sm:w-auto text-center"
             >
               Contact Support

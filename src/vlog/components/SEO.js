@@ -12,7 +12,7 @@ const SEO = ({
   noindex = false
 }) => {
   // Base domain for the site
-  const domain = 'https://iandivlog.com';
+  const domain = 'https://myiandi.com/';
   
   // Format full page title
   const fullTitle = `${title} | I&I Vlog Camera`;

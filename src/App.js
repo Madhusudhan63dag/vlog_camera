@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { initGA } from './utils/analytics';
 import PageTracker from './components/PageTracker';
+import ScrollToTop from './components/ScrollToTop';
 import Vlog from './vlog/Vlog';
 import Projector from './projector/Projector';
 import CheckoutPage from './vlog/Checkout';
@@ -21,6 +22,8 @@ const App = () => {
   return (
     <div>
       <Router>
+        {/* ScrollToTop ensures page starts from the top on route changes */}
+        <ScrollToTop />
         {/* PageTracker monitors route changes and sends page view events to Google Analytics */}
         <PageTracker />
         <Routes>

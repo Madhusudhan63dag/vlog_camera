@@ -11,7 +11,7 @@ function CheckoutPages() {
     selectedVariant: {
       name: "Standard Edition",
       basePrice: 6990,
-      features: ["4G LTE Connectivity", "4K UHD Video", "8-hour Battery Life"]
+      features: ["4G LTE Connectivity", "8-hour Battery Life"]
     },
     quantity: 1,
     totalPrice: 6990

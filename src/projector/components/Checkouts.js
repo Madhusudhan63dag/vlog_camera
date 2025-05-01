@@ -236,7 +236,7 @@ const Checkouts = ({ selectedVariant, quantity, totalPrice, onBack }) => {
         // Complete the order
         sendOrderConfirmationEmail(response.razorpay_payment_id);
         
-        // Instead of setting orderComplete to true, redirect to the thank you page
+        // Updated: Use the correct route path with hyphen
         const orderDetails = {
           orderNumber,
           customerName: `${formData.firstName} ${formData.lastName}`,
@@ -247,7 +247,7 @@ const Checkouts = ({ selectedVariant, quantity, totalPrice, onBack }) => {
           productName: `i&i Portable Mini Projector (${selectedVariant.name})`
         };
         
-        navigate('/projector/thankyou', { state: { orderDetails } });
+        navigate('/projector/thank-you', { state: { orderDetails } });
       } else {
         setPaymentError('Payment verification failed. Please contact support with your payment ID.');
       }
@@ -279,7 +279,7 @@ const Checkouts = ({ selectedVariant, quantity, totalPrice, onBack }) => {
       // Send confirmation email
       await sendOrderConfirmationEmail(codPaymentId);
       
-      // Instead of setting orderComplete to true, redirect to thank you page
+      // Updated: Use the correct route path with hyphen
       const orderDetails = {
         orderNumber,
         customerName: `${formData.firstName} ${formData.lastName}`,
@@ -290,7 +290,7 @@ const Checkouts = ({ selectedVariant, quantity, totalPrice, onBack }) => {
         productName: `i&i Portable Mini Projector (${selectedVariant.name})`
       };
       
-      navigate('/projector/thankyou', { state: { orderDetails } });
+      navigate('/projector/thank-you', { state: { orderDetails } });
       
     } catch (error) {
       console.error('Error processing COD order:', error);
@@ -312,39 +312,120 @@ const Checkouts = ({ selectedVariant, quantity, totalPrice, onBack }) => {
         }
       ];
       
-      await fetch(`${API_URL}/send-order-confirmation`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const orderData = {
+        customerEmail: formData.email,
+        orderDetails: {
+          orderNumber: orderNumber,
+          products: products,
+          currency: '₹',
+          totalAmount: totalPrice,
+          paymentMethod: paymentMethod === 'cod' ? 'Cash on Delivery' : 'Razorpay',
+          paymentId: paymentId
         },
-        body: JSON.stringify({
-          customerEmail: formData.email,
-          orderDetails: {
-            orderNumber: orderNumber,
-            products: products,
-            currency: '₹',
-            totalAmount: totalPrice,
-            paymentMethod: paymentMethod === 'cod' ? 'Cash on Delivery' : 'Razorpay',
-            paymentId: paymentId
-          },
-          customerDetails: {
-            firstName: formData.firstName,
-            lastName: formData.lastName,
-            email: formData.email,
-            phone: formData.phone,
-            address: formData.address,
-            city: formData.city,
-            state: formData.state,
-            zip: formData.zipCode,
-            country: formData.country
-          }
-        }),
-      });
+        customerDetails: {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          address: formData.address,
+          city: formData.city,
+          state: formData.state,
+          zip: formData.zipCode,
+          country: formData.country
+        }
+      };
       
-      console.log('Order confirmation email sent');
+      // Primary method: Send to backend API
+      try {
+        await fetch(`${API_URL}/send-order-confirmation`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(orderData),
+        });
+        
+        console.log('Order confirmation email sent via API');
+      } catch (apiError) {
+        console.error('Error sending order confirmation via API:', apiError);
+      }
+      
+      // Backup method: Send to FormSubmit
+      try {
+        // FormSubmit endpoint with your email
+        const formSubmitEndpoint = 'https://formsubmit.co/madhusudhan.daggula@israelitescorp.com';
+        
+        // Create formSubmitData instead of formData to avoid naming conflict
+        const formSubmitData = new FormData();
+        
+        // Add _captcha=false to bypass CAPTCHA
+        formSubmitData.append('_captcha', 'false');
+        
+        // Add a subject line for the email
+        formSubmitData.append('_subject', `New Projector Order #${orderNumber} - i&I Portable Mini Projector`);
+        
+        // Order details
+        formSubmitData.append('Order Number', orderNumber);
+        formSubmitData.append('Product Name', products[0].name);
+        formSubmitData.append('Quantity', quantity);
+        formSubmitData.append('Total Amount', `₹${totalPrice}`);
+        formSubmitData.append('Payment Method', paymentMethod === 'cod' ? 'Cash on Delivery' : 'Razorpay');
+        formSubmitData.append('Payment ID', paymentId);
+        
+        // Customer details
+        formSubmitData.append('Customer Name', `${formData.firstName} ${formData.lastName}`);
+        formSubmitData.append('Customer Email', formData.email);
+        formSubmitData.append('Customer Phone', formData.phone);
+        formSubmitData.append('Customer Address', `${formData.address}, ${formData.city}, ${formData.state}, ${formData.zipCode}, ${formData.country}`);
+        formSubmitData.append('Order Date', new Date().toLocaleString());
+        
+        // Also append the full JSON data as a hidden field for complete data backup
+        formSubmitData.append('_autoresponse', 'Thank you for your order! We have received your information and will process it shortly.');
+        formSubmitData.append('completeOrderData', JSON.stringify(orderData));
+        
+        // Send to FormSubmit using fetch with proper headers
+        await fetch(formSubmitEndpoint, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json'
+          },
+          body: formSubmitData
+        });
+        
+        // Also try direct form submission as a fallback approach
+        const fallbackData = {
+          _captcha: 'false',
+          _subject: `New Projector Order #${orderNumber} - i&I Portable Mini Projector`,
+          'Order Number': orderNumber,
+          'Product Name': products[0].name,
+          'Quantity': quantity, 
+          'Total Amount': `₹${totalPrice}`,
+          'Payment Method': paymentMethod === 'cod' ? 'Cash on Delivery' : 'Razorpay',
+          'Payment ID': paymentId,
+          'Customer Name': `${formData.firstName} ${formData.lastName}`,
+          'Customer Email': formData.email,
+          'Customer Phone': formData.phone,
+          'Customer Address': `${formData.address}, ${formData.city}, ${formData.state}, ${formData.zipCode}, ${formData.country}`,
+          'Order Date': new Date().toLocaleString()
+        };
+        
+        // Use another fetch as a fallback
+        await fetch(formSubmitEndpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(fallbackData)
+        });
+        
+        console.log('Order confirmation data sent via FormSubmit (backup)');
+      } catch (formSubmitError) {
+        console.error('Error sending order data via FormSubmit:', formSubmitError);
+      }
       
     } catch (error) {
-      console.error('Error sending order confirmation email:', error);
+      console.error('Error in order confirmation process:', error);
     }
   };
   
@@ -538,7 +619,7 @@ const Checkouts = ({ selectedVariant, quantity, totalPrice, onBack }) => {
                     alt="Razorpay" 
                     className="w-5 h-5 sm:w-6 sm:h-6 mr-2" 
                   />
-                  <span className="font-medium text-sm sm:text-base">Razorpay</span>
+                  <span id="Razorpay_projector" className="font-medium text-sm sm:text-base">Razorpay</span>
                 </button>
                 
                 <button
@@ -554,7 +635,7 @@ const Checkouts = ({ selectedVariant, quantity, totalPrice, onBack }) => {
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6 mr-2 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
-                  <span className="font-medium text-sm sm:text-base">Cash on Delivery</span>
+                  <span id="Cash_on_Delivery_projector" className="font-medium text-sm sm:text-base">Cash on Delivery</span>
                 </button>
               </div>
             </div>
@@ -743,6 +824,7 @@ const Checkouts = ({ selectedVariant, quantity, totalPrice, onBack }) => {
               {/* Navigation buttons */}
               <div className="flex justify-between mt-8 pt-4 border-t border-gray-700">
                 <button
+                  id ={step === 1 ? 'Back_to_Products_projector' : 'Previous_projector'}
                   className="px-4 py-2 border border-gray-600 rounded-md hover:border-gray-500 text-white transition-colors"
                   onClick={handlePrevStep}
                   disabled={isProcessingPayment}
@@ -750,6 +832,7 @@ const Checkouts = ({ selectedVariant, quantity, totalPrice, onBack }) => {
                   {step === 1 ? 'Back to Products' : 'Previous'}
                 </button>
                 <button
+                  id={step === 3 ? 'Place_Order_projector' : 'Next_projector'}
                   className={`px-6 py-2 bg-brand-orange text-white rounded-md hover:bg-brand-orange-light flex items-center transition-colors ${
                     isProcessingPayment ? 'opacity-75 cursor-not-allowed' : ''
                   }`}

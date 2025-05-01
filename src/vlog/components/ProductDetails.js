@@ -301,7 +301,8 @@ const ProductDetails = ({ onBuyNow }) => {
                   </div>
                 </div>
                 <button
-                  className="w-full bg-brand-orange hover:bg-brand-orange-light text-white py-3 px-6 rounded-md font-bold text-lg transition-colors"
+                  id='buy_now_vlog'
+                  className="w-full button_has_clicked bg-brand-orange hover:bg-brand-orange-light text-white py-3 px-6 rounded-md font-bold text-lg transition-colors"
                   onClick={handleBuyNowClick}
                 >
                   Buy Now

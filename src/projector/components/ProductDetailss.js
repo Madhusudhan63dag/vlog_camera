@@ -34,7 +34,7 @@ const ProductDetailss = ({ onBuyNow }) => {
         "HD 720P Resolution with LCD Technology", 
         "Android 13.0 OS with Built-in Apps",
         "Wi-Fi 6 & Wireless Screen Mirroring", 
-        "Bluetooth 5.1 Audio Connectivity",
+        "Bluetooth 5.0 Audio Connectivity",
         "3W Cavity Design Speaker System", 
         "Auto Keystone Correction"
       ]
@@ -261,7 +261,7 @@ const ProductDetailss = ({ onBuyNow }) => {
             i&i Portable Mini Projector
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Cute design with powerful performance - Wi-Fi 6, Bluetooth 5.1, and 720P Full HD
+            Cute design with powerful performance - Wi-Fi 6, Bluetooth 5.0, and 720P Full HD
           </p>
         </div>
 
@@ -458,10 +458,11 @@ const ProductDetailss = ({ onBuyNow }) => {
                   
                   {/* Buy Now Button */}
                   <button
+                    id="buy_now_projector"
                     className="w-full bg-gradient-to-r from-[#FD5201] to-[#FD5201]/80 hover:from-[#FD5201]/90 hover:to-[#FD5201] text-white py-4 px-6 rounded-lg font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center"
                     onClick={handleBuyNowClick}
                   >
-                    <span className="mr-2">Buy Now</span>
+                    <span  className="mr-2 button_has_clicked_two">Buy Now</span>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
